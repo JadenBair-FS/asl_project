@@ -1,5 +1,5 @@
 let products = [
-  { id: 1, name: "Product 1", description: "Description 1", price: 100 },
+  { id: "1", name: "Product 1", description: "Description 1", price: "100" },
 ];
 
 const all = () => {
