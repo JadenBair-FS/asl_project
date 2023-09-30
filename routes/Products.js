@@ -12,3 +12,10 @@ router.delete('/:id', productCtrl.destroy)
 router.post('/:id/delete', productCtrl.destroy)
 
 module.exports = router;
+
+//curl -X GET http://localhost:3000/products
+//curl -X GET http://localhost:3000/products/1
+//curl -X POST --data "id=2&name=Product 2&description=Description 2&price=200" http://localhost:3000/products
+//curl -X POST --data "id=2&name=Updated Product 2&description=Updated Description 2&price=500" http://localhost:3000/products/2
+//curl -X DELETE http://localhost:3000/products/2
+//curl -X POST http://localhost:3000/products/1/delete
