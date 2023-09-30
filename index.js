@@ -1,25 +1,30 @@
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send(`Home Page!  GET...`);
-});
-
-app.post("/", (req, res) => {
-  res.send(`Home Page! POST...`);
-});
-
-app.get("/products/:productId-:productName", (req, res) => {
+app.get("/products/all", (req, res) => {
   res.send(
-    "Product Page! Product name: " +
-      req.params.productName +
-      " Product ID: " +
-      req.params.productId
+    "GET Products: " +
+      req.headers.page +
+      ", " +
+      req.headers.sort +
+      ", " +
+      req.headers.order
   );
 });
 
-app.get("/products/:productName", (req, res) => {
-  res.send("Product Page! Product name: " + req.params.productName);
+app.get("/products/:productId-:productSize-:productColor", (req, res) => {
+  res.send(
+    "GET Products:  " +
+      req.params.productId +
+      ", " +
+      req.params.productSize +
+      ", " +
+      req.params.productColor
+  );
+});
+
+app.get("/products/:productId", (req, res) => {
+  res.send("GET Products: " + req.params.productId);
 });
 
 app.listen(3000);
