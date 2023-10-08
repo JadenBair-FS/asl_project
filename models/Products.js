@@ -1,5 +1,5 @@
 let products = [
-  { id: "1", name: "Product 1", description: "Description 1", price: "100" },
+  { id: "1", name: "Product 1", description: "Description 1", price: 100 },
 ];
 
 const all = () => {
@@ -11,8 +11,9 @@ const find = (id) => {
 };
 
 const create = (product) => {
-  products.push(product);
-  return products;
+  const id = Number(products[products.length - 1].id) + 1 + "";
+  products.push({ id, ...product });
+  return products[products.length - 1];
 };
 
 const update = (id, product) => {
