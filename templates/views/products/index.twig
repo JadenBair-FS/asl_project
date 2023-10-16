@@ -4,9 +4,8 @@
     <h1>All Products</h1>
     {% for product in products %}
         <li>
-            Name: {{ product.name }} |
+            Name: {{ product.title }} |
             Price: {{ product.price }} | 
-            Description: {{ product.description }} | 
             <br>
             <button><a href="/products/{{ product.id }}">Edit</a> </button>
             <form method="POST" action="/products/{{ product.id }}/delete">

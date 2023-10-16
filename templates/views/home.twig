@@ -1,8 +1,12 @@
-{% extends "../layouts/base.twig" %}
+{% extends "../layouts/base.twig" %} {% block main_content %}
 
-{% block main_content %}
-<p> This content is coming from templates/views/home.twig</p>
-{% endblock %}
+<h1>Manage</h1>
+<nav>
+  <ul>
+    <li><a href="/products">Products</a></li>
+    <li><a href="/variants">Variants</a></li>
+    <li><a href="/images">Images</a></li>
+  </ul>
+</nav>
 
-{% block title %}Home View{% endblock %}
-```
+{% endblock %} {% block title %}Home View{% endblock %} ```

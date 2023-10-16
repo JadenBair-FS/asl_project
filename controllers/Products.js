@@ -1,39 +1,44 @@
-const Products = require("../models/Products");
+const { Product } = require("../models");
 
-const index = (req, res) => {
-  const products = Products.all();
+const index = async (req, res) => {
+  const products = await Product.findAll();
   res.render("views/products/index.twig", { products });
+  // res.json(products);
 };
 
-const form = (req, res) => {
+const form = async (req, res) => {
   // res.send("Products.form")
   if (req.params.id) {
-    const product = Products.find(req.params.id);
+    const product = await Product.findByPk(req.params.id);
     res.render("views/products/edit", { product });
   } else {
     res.render("views/products/create");
   }
 };
 
-const show = (req, res) => {
-  const product = Products.find(req.params.id);
-  res.render("views/products/show.twig", { product });
+const show = async (req, res) => {
+  const product = await Product.findByPk(req.params.id);
+  const variants = await product.getVariants();
+  res.render("views/products/show.twig", { product, variants });
 };
 
-const create = (req, res) => {
-  const product = Products.create(req.body);
-    res.redirect("/products/" + product.id);
+const create = async (req, res) => {
+  const product = await Product.create(req.body);
+  // res.json(product);
+  res.redirect("/products/" + product.id);
 };
 
-const update = (req, res) => {
-  const product = Products.update(req.params.id, req.body);
+const update = async (req, res) => {
+  const product = await Product.update(req.body, {
+    where: { id: req.params.id },
+  });
   res.redirect("/products/" + req.params.id);
 };
 
-const destroy = (req, res) => {
-  const product = Products.remove(req.params.id);
-  const products = Products.all();
-  res.render("views/products/index.twig", { products });
+const destroy = async (req, res) => {
+  const product = await Product.destroy({ where: { id: req.params.id } });
+  // const products = Product.findAll();
+  res.redirect("/products");
 };
 
 module.exports = { index, form, show, create, update, destroy };
