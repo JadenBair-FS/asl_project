@@ -1,0 +1,17 @@
+{% extends "layouts/base.twig" %}
+
+{% block main_content %}
+    <h2>About Image #{{image.id}}</h2>
+    <ul>
+        <li>
+            <label>ID: </label> {{ image.id}} |
+            <label>Assigned Variant: </label> {{ variant.title}}
+        </li>
+    </ul>
+    <p>
+        <a href="/images/{{ image.id }}/edit">Edit</a> | <form method="POST" action="/images/{{ image.id }}/delete">
+            <input type="submit" value="Delete">
+        </form>
+    </p>
+    
+{% endblock %}

@@ -1,17 +1,44 @@
 {% extends "layouts/base.twig" %}
 
 {% block main_content %}
-    <h2>About {{product.name}}</h2>
+    <h2>About {{product.title}}</h2>
     <ul>
         <li>
             <label>ID: </label> {{ product.id}}
-            <label>Name: </label> {{ product.name}}
+        </li>
+        <li>
+            <label>Title: </label> {{ product.title}}
+        </li>
+        <li>
             <label>Price: </label> {{ product.price}}
+        </li>
+        <li>
+            <label>Slug: </label> {{ product.slug}}
+        </li>
+        <li>
             <label>Description: </label> {{ product.description}}
         </li>
-    </ul>
+        <li>
+            <label>Is Published: </label> {{ product.is_published}}
+        </li>
+        </ul>
+        <div>
+            <h3>Variants</h3>
+            <ul>
+                {% for variant in variants %}
+                    <li>
+                        <a href="/variants/{{ variant.id }}">{{ variant.title }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+         
+        
+    
     <p>
-        <a href="/products/{{ product.id }}/edit">Edit</a> | <a href="/products/{{ product.id }}/delete">Delete</a>
+        <a href="/products/{{ product.id }}/edit">Edit</a> | <form method="POST" action="/products/{{ product.id }}/delete">
+            <input type="submit" value="Delete">
+        </form>
     </p>
     
 {% endblock %}

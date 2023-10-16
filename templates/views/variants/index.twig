@@ -1,0 +1,15 @@
+{% extends "layouts/base.twig" %} {% block main_content %}
+<h1>All Variants</h1>
+{% for variant in variants %}
+<li>
+  ID: {{ variant.id }} | Name: {{ variant.title }} |
+  <br />
+  <button><a href="/variants/{{ variant.id }}">Edit</a></button>
+  <form method="POST" action="/variants/{{ variant.id }}/delete">
+    <input type="submit" value="Delete" />
+  </form>
+</li>
+{% endfor %}
+<br />
+<button><a href="/variants/new">Add New Variant</a></button>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "layouts/base.twig" %}
+
+{% block main_content %}
+    <h2>About {{variant.title}}</h2>
+    <ul>
+        <li>
+            <label>ID: </label> {{ variant.id}}
+        </li>
+        <li>
+            <label>Name: </label> {{ variant.title}}
+        </li>
+        <li>
+            <label>Product: </label> {{ product.title}}
+        </li>
+    </ul>
+    <p>
+        <a href="/variants/{{ variant.id }}/edit">Edit</a> | <form method="POST" action="/variants/{{ variant.id }}/delete">
+            <input type="submit" value="Delete">
+        </form>
+    </p>
+    
+{% endblock %}
