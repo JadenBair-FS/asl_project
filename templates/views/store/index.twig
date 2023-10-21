@@ -1,0 +1,33 @@
+{% extends 'layouts/base.twig' %} {% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/public/index-page.css" />
+{% endblock %} {% block title %}Store Front{% endblock %} {% block main_content %}
+<main>
+  <header class="head">
+    <h1>E-Commerce Shop</h1>
+    <p>Welcome to the store.</p>
+    <p>Here are the products available:</p>
+  </header>
+  <section class="main">
+    {% for product in products %} {% if product.is_published %}
+    <article class="productCard">
+      <header class="productCardHeader">
+        <h1><a href="/store/products/{{product.slug}}">{{ product.title }}</a></h1>
+        {% for variant in product.Variants %} {% set loopIndex = loop.index %}
+        {% for image in variant.Images %}
+        <img
+          class="pic-{{ loopIndex }}"
+          id="productCardImage"
+          src="/public/images/{{ image.id }}{{ image.extension }}"
+        />
+        {% endfor %} {% endfor %} 
+      </header>
+      <div class="productCardBody">
+        <p>{{ product.description }}</p>
+        <p>${{ product.price }}</p>
+      </div>
+    </article>
+    {% endif %} {% endfor %}
+  </section>
+</main>
+{% endblock %}

@@ -1,5 +1,9 @@
 {% extends "layouts/base.twig" %}
-
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/public/index-page.css" />
+{% endblock %} 
+{% block title %}Variants Backend{% endblock %}
 {% block main_content %}
     <h2>About {{variant.title}}</h2>
     <ul>
@@ -11,6 +15,18 @@
         </li>
         <li>
             <label>Product: </label> {{ product.title}}
+        </li>
+        <li>
+            <label>Price: </label> ${{ variant.price}}
+        </li>
+        <li>
+            <label>Slug: </label> {{ variant.slug}}
+        </li>
+        <li>
+            <label>Inventory: </label> {{ variant.inventory}}
+        </li>
+        <li>
+            <label>Description: </label> {{ variant.description}}
         </li>
     </ul>
     <p>

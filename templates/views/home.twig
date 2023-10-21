@@ -1,4 +1,8 @@
-{% extends "../layouts/base.twig" %} {% block main_content %}
+{% extends "../layouts/base.twig" %} {% block main_content %} {% block
+stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/public/index-page.css" />
+{% endblock %} {% block title %}Variants Backend{% endblock %}
 
 <h1>Manage</h1>
 <nav>

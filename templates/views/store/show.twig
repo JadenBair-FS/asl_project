@@ -1,0 +1,45 @@
+{% extends 'layouts/base.twig' %} {% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/public/show-page.css" />
+{% endblock %} {% block title %}{{ product.title }}{% endblock %} {% block
+main_content %}
+<main class="main">
+  <article class="productCard">
+    <header class="productCardHeader">
+      {% set defaultImage = variant.Images[0] %}
+      <h1>{{ product.title }} - {{ variant.slug | capitalize }}</h1>
+      <img
+        class="productCardImage"
+        src="/public/images/{{ defaultImage.id }}{{ defaultImage.extension }}"
+      />
+    </header>
+    <div class="productCardBody">
+      <h4>Options:</h4>
+      <p>
+        {% for option in product.Variants %} {% if option.id == variant.id %}
+        {{ option.title }}
+        {% else %}
+        <a href="/store/products/{{ product.slug }}?v={{ option.slug }}">{{
+          option.title
+        }}</a>
+        {% endif %} {% endfor %}
+      </p>
+      <div class="row">
+        <h4>
+          Stock Level:
+          <span id="red">
+            {% if variant.inventory > 0 %}
+            {{ variant.inventory }}
+            {% else %} Out of Stock {% endif %}
+          </span>
+        </h4>
+        <h4 class="space">
+          Price: <span id="red">${{ variant.price }}</span>
+        </h4>
+      </div>
+      <p>{{ product.description }}</p>
+      <button class="button">Add To Cart</button>
+    </div>
+  </article>
+</main>
+{% endblock %}
