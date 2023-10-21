@@ -18,8 +18,7 @@ const form = async (req, res) => {
 
 const show = async (req, res) => {
   const product = await Product.findByPk(req.params.id);
-  const variants = await product.getVariants();
-  res.render("views/products/show.twig", { product, variants });
+  res.render("views/products/show.twig", { product });
 };
 
 const create = async (req, res) => {

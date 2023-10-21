@@ -1,8 +1,14 @@
-{% extends "layouts/base.twig" %} {% block main_content %}
+{% extends "layouts/base.twig" %} 
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/public/index-page.css" />
+{% endblock %} 
+{% block title %}Variants Backend{% endblock %}
+{% block main_content %}
 <h1>All Variants</h1>
 {% for variant in variants %}
 <li>
-  ID: {{ variant.id }} | Name: {{ variant.title }} |
+  ID: {{ variant.id }} | Name: {{ variant.title }}
   <br />
   <button><a href="/variants/{{ variant.id }}">Edit</a></button>
   <form method="POST" action="/variants/{{ variant.id }}/delete">

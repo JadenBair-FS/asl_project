@@ -1,9 +1,21 @@
-<form method="POST" action="/images/{% if image.id %}{{ image.id }}{% endif %}">
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/public/index-page.css" />
+{% endblock %} 
+{% block title %}Images Backend{% endblock %}
+
+{% block main_content %}
+
+<form
+  enctype="multipart/form-data"
+  method="POST"
+  action="/images/{% if image.id %}{{ image.id }}{% endif %}"
+>
   {% if image.id %}
   <input type="hidden" name="id" value="{{ image.id }}" />
   {% endif %}
   <div>
-    <label>Variant: </label>
+    <label>Parent Variant: </label>
     <select name="variantId">
       {% for variant in variants %}
       <option value="{{ variant.id }}">{{ variant.title }}</option>
@@ -11,6 +23,13 @@
     </select>
   </div>
   <div>
+    <label for="image">Upload Image:</label>
+    <br />
+    <input type="file" name="image" id="image" />
+  </div>
+  <div>
     <input type="submit" value="Submit" />
   </div>
 </form>
+
+{% endblock %}

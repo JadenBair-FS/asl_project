@@ -19,20 +19,31 @@ const form = async (req, res) => {
 
 const show = async (req, res) => {
   const image = await Image.findByPk(req.params.id);
-  const variant = await image.getVariant();
-  res.render("views/images/show.twig", { image, variant });
+  console.log("Image:", image);
+
+  if (image) {
+    const variant = await image.getVariant();
+    console.log("Variant:", variant);
+    res.render("views/images/show.twig", { image, variant });
+  } else {
+    res.status(404).send("Image not found");
+  }
 };
 
-const create = async (req, res) => {
+const create = async (req, res, next) => {
   const image = await Image.create(req.body);
+  req.imageId = image.id;
+  next();
   // res.json(product);
   res.redirect("/images/" + image.id);
 };
 
-const update = async (req, res) => {
+const update = async (req, res, next) => {
   const image = await Image.update(req.body, {
     where: { id: req.params.id },
   });
+  req.imageId = req.params.id;
+  next();
   res.redirect("/images/" + req.params.id);
 };
 

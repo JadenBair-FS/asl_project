@@ -9,16 +9,16 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.addColumn("Variants", "description", {
+    await queryInterface.addColumn("Products", "description", {
       type: Sequelize.TEXT("long"),
     });
-    await queryInterface.addColumn("Variants", "slug", {
+    await queryInterface.addColumn("Products", "slug", {
       type: Sequelize.STRING,
       defaultValue: "",
       allowNull: false,
     });
-    await queryInterface.addColumn("Variants", "inventory", {
-      type: Sequelize.INTEGER,
+    await queryInterface.addColumn("Products", "is_published", {
+      type: Sequelize.BOOLEAN,
       allowNull: false,
     });
   },

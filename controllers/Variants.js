@@ -19,8 +19,15 @@ const form = async (req, res) => {
 
 const show = async (req, res) => {
   const variant = await Variant.findByPk(req.params.id);
-  const product = await variant.getProduct();
-  res.render("views/variants/show.twig", { variant, product });
+  console.log('Variant:', variant);
+  
+  if (variant) {
+    const product = await variant.getProduct();
+    console.log('Product:', product);
+    res.render("views/variants/show.twig", { variant, product });
+  } else {
+    res.status(404).send('Variant not found');
+  }
 };
 
 const create = async (req, res) => {

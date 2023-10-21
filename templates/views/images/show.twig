@@ -1,4 +1,10 @@
 {% extends "layouts/base.twig" %}
+{% block stylesheets %}
+{{ parent() }}
+<link rel="stylesheet" type="text/css" href="/public/index-page.css" />
+{% endblock %} 
+
+{% block title %}Images Backend{% endblock %}
 
 {% block main_content %}
     <h2>About Image #{{image.id}}</h2>
